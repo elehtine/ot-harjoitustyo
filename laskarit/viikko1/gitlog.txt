@@ -1,0 +1,113 @@
+commit 1324fb3a89b474332d0ed26a3e0bb4e4a5792c2c
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 15:44:44 2019 +0200
+
+    poista ja muokkaa tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit efb121651c01e7c1431ea7f191e1ee3182de1fe7
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 15:41:38 2019 +0200
+
+    uusia tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 059dec40e5b1b75e78630f72c83b0f4823ec8f1b
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 11:40:28 2019 +0200
+
+    muutokia tiedostoissa
+
+ eka.txt    | 5 ++---
+ kolmas.txt | 7 ++++++-
+ 2 files changed, 8 insertions(+), 4 deletions(-)
+
+commit ea07b6c5efdbc09dbe63b94a598ef5f48b6d1b53
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 11:34:47 2019 +0200
+
+    uudelleennimea tiedosto
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1cd3d3e93f52ee9d5e434abc87f243eecd555103
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 11:33:22 2019 +0200
+
+    poista tiedosto
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit ba086bd94ed1703b27494e398426b31aecb044b4
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 11:29:15 2019 +0200
+
+    tiedostoa muokattu
+
+ tiedosto.txt | 21 +++++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
+
+commit 2319cfcad6d96395588661bd58e2d6aa43dcd61e
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 11:27:50 2019 +0200
+
+    tiedostoa muokattu
+
+ tiedosto.txt | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
+
+commit e179bd404336d8f13aad48d7c0c63448cfb2ee1c
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 10:00:15 2019 +0200
+
+    lisätty hakemisto ja tiedosto
+
+ stuff/joku.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 405132f2088072b654992e33526bf62eaac13903
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 09:59:06 2019 +0200
+
+    muutoksia tiedostoissa
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit bbe8b2d0e3366fc468d8070881985d316cd217a3
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 09:57:34 2019 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit d9beaff87493dd7e215793cd65e0bddcd05b6d8c
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 09:31:35 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit d519332cd6e640cd8d99860c66505becf21018bf
+Author: Elias Lehtinen <elias.lehtinen01@gmail.com>
+Date:   Wed Oct 30 09:29:12 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
