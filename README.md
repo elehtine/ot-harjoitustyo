@@ -6,3 +6,4 @@ Normaalia tekstiä, josta osa on **paksumpaa** ja osa on *kursivoitu*.
 
 [komentorivi.txt](https://github.com/elehtine/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
+Muutos READMEssä, jolla saadaan aiheutettua epäsynkrooni!!
