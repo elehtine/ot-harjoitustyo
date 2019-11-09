@@ -6,7 +6,7 @@ Sovellus on Tetris peli. Pelissä yksikerrallaan eri muotoisia palikoita. Jos pa
 
 ## Käyttäjät
 
-Alkuvaiheessa ei ole tarkoitus tehdä minkään laista käyttäjää. Kun pelimekaniikka toimii, lisätään kirjautumis vaihtoehto. Tällöin pelaaja voi tallentaa pelin jälkeen pisteensä omalla nimellään.
+Alkuvaiheessa ei ole tarkoitus tehdä minkäänlaista käyttäjää. Kun pelimekaniikka toimii, lisätään kirjautumis vaihtoehto. Tällöin pelaaja voi tallentaa pelin jälkeen pisteensä omalla nimellään.
 
 ## Käyttöliittymäluonnos
 
