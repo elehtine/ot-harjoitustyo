@@ -1,13 +1,27 @@
-# Otsikko
+# Tetris
 
-Normaalia tekstiä, josta osa on **paksumpaa** ja osa on *kursivoitu*.
+Sovellus on tetris peli. Pelissä on erimuotoisia neljästä neliöstä koostuvia palikoita. Palikat putoavat peliin yksikerrallaan. Pelaajan ohjata niiden putoamista. Jos palikat muodostavat täyden vaakarivin, tämä katoaa. Näistä riveistä saa pisteitä.
 
-[gitlog.txt](https://github.com/elehtine/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+## Dokumentaatio
 
-[komentorivi.txt](https://github.com/elehtine/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+[Vaatimusmäärittely](https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
 
-[vaatimusmäärittely.md](https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
+[Työaikakirjanpito](https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md) 
 
-[tyoaikakirjanpito.md](https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
+## Komentorivitoiminnot
 
-Muutos READMEssä, jolla saadaan aiheutettua epäsynkrooni!!
+### Testaus
+
+Testit suoritetaan komennolla
+
+```
+mvn test
+```
+
+Testikattavuusraportti luodaan komennolla
+
+```
+mvn jacoco:report
+```
+
+Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/jacoco/index.html_
