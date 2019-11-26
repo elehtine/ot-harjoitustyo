@@ -27,5 +27,26 @@ public class GridTest {
 		assertEquals(grid.getBlockHash(), 8659200);
 	}
 
+	@Test
+	public void testDrop() {
+		int y = grid.getY();
+		grid.dropBlock();
+		assertEquals(grid.getY(), y+1);
+	}
+
+	@Test
+	public void testRotateAnddrop() {
+		int y = grid.getY();
+		grid.dropBlock();
+		grid.rotateBlock();
+		assertEquals(grid.getY(), y+1);
+	}
+
+	@Test
+	public void testHardDrop() {
+		grid.hardDrop();
+		assertEquals(grid.getY(), grid.getHeight()-2);
+	}
+
 }
 
