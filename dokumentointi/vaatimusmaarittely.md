@@ -11,7 +11,7 @@ Alkuvaiheessa ei ole tarkoitus tehdä minkäänlaista käyttäjää. Kun pelimek
 ## Käyttöliittymäluonnos
 
 Sovellus koostuu neljästä eri näkymästä
-- peli näkymä
+- peli näkymä (tehty)
 - asetus näkymä
 - huipputulos näkymä
 - kirjautumis näkymä
@@ -20,7 +20,7 @@ Sovellus koostuu neljästä eri näkymästä
 
 ### Ennen kirjautumista
 
-- käyttäjä voi pelata peliä
+- käyttäjä voi pelata peliä (kesken)
 - käyttäjä voi pelin vaihtaa asetuksia
 - pelaaja voi selata huipputuloksia
 
