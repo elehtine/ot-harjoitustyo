@@ -1,6 +1,7 @@
 package tetris.domain;
 
 import javafx.scene.paint.*;
+import java.util.*;
 
 /**
  * Game area
@@ -19,16 +20,18 @@ public class Grid {
 	private int y;
 	
 	private int colorNb	= 2;
-	private final Color[] COLORS = new Color[] { Color.WHITE, Color.AQUA, Color.BLACK };
+	private final Color[] COLORS = new Color[] { Color.VIOLET, Color.AQUA, Color.BLACK };
 
 	private final boolean t = true;
 	private final boolean f = false;
 
-	private final int startX = 5;
-	private final int startY = 2;
+	private final int[] startX = { 5, 5 };
+	private final int[] startY = { 1, 2 };
 
-	private int blockWidth = 5;
-	private int blockAdd = -2;
+	private final int blockWidth = 5;
+	private final int blockAdd = -2;
+
+	private Random random;
 
 	/**
 	 * Empty block for testing
@@ -41,6 +44,14 @@ public class Grid {
 		{ f, f, f, f, f } 
 	};
 
+	private final boolean[][] T_BLOCK = new boolean[][] {
+		{ f, f, f, f, f },
+		{ f, f, f, f, f },
+		{ f, t, t, t, f },
+		{ f, f, t, f, f },
+		{ f, f, f, f, f }
+	};
+
 	private final boolean[][] I_BLOCK = new boolean[][] {
 		{ f, f, f, f, f },
 		{ f, f, f, f, f },
@@ -49,41 +60,33 @@ public class Grid {
 		{ f, f, f, f, f }
 	};
 
-	public Grid(int width, int height) {
+	private boolean[][][] blocks;
+
+	public Grid(int width, int height, int index) {
+		this.random = new Random(System.nanoTime());
+		blocks = new boolean[][][] { T_BLOCK, I_BLOCK };
 		this.width = width;
 		this.height = height;
-		initGrid();
+		initGrid(index);
 	}
 
-	public int[][] getGrid() {
-		int[][] result = new int[width][height];
-		for (int i = 0; i < width; ++i) {
-			for (int j = 0; j < height; ++j) {
-				result[i][j] = grid[i][j];
-			}
-		}
-		if (block == null) {
-			return result;
-		}
-		for (int i = 0; i < blockWidth; ++i) {
-			for (int j = 0; j < blockWidth; ++j) {
-				if (i + x + blockAdd < 0 || i + x + blockAdd >= width) {
-					continue;
-				}
-				if (j + y + blockAdd < 0 || j + y + blockAdd >= height) {
-					continue;
-				}
-				result[i + x + blockAdd][j + y + blockAdd] = block[i][j] ? blockColor : colorNb;
-			}
-		}
-		return result;
+	public Grid(int width, int height) {
+		this.random = new Random(System.nanoTime());
+		this.blocks = new boolean[][][] { T_BLOCK, I_BLOCK };
+		this.width = width;
+		this.height = height;
+		initGrid(colorNb);
 	}
 
-	public void newBlock() {
-		block = I_BLOCK;
-		blockColor = 1;
-		x = startX;
-		y = startY;
+	public void newBlock(int index) {
+		if (index == colorNb) {
+			blockColor = random.nextInt(colorNb);
+		} else {
+			blockColor = index;
+		}
+		block = blocks[blockColor];
+		x = startX[blockColor];
+		y = startY[blockColor];
 	}
 
 	// rotate block clockwise
@@ -158,6 +161,25 @@ public class Grid {
 		return true;
 	}
 
+	public int[][] getGrid() {
+		int[][] result = copy(grid);
+		if (block == null) {
+			return result;
+		}
+		for (int i = 0; i < blockWidth; ++i) {
+			for (int j = 0; j < blockWidth; ++j) {
+				if (i + x + blockAdd < 0 || i + x + blockAdd >= width) {
+					continue;
+				}
+				if (j + y + blockAdd < 0 || j + y + blockAdd >= height) {
+					continue;
+				}
+				result[i + x + blockAdd][j + y + blockAdd] = block[i][j] ? blockColor : colorNb;
+			}
+		}
+		return result;
+	}
+
 	public int getBlockHash() {
 		int hash = 0;
 		for (int i = 0; i < blockWidth; ++i) {
@@ -191,14 +213,24 @@ public class Grid {
 		return height;
 	}
 
-	private void initGrid() {
+	private void initGrid(int index) {
 		this.grid = new int[width][height];
 		for (int i = 0; i < width; ++i) {
 			for (int j = 0; j < height; ++j) {
 				grid[i][j] = colorNb;
 			}
 		}
-		newBlock();
+		newBlock(index);
+	}
+
+	private static int[][] copy(int[][] array) {
+		int[][] result = new int[ array.length ][ array[0].length ];
+		for (int i = 0; i < array.length; ++i) {
+			for (int j = 0; j < array[0].length; ++j) {
+				result[i][j] = array[i][j];
+			}
+		}
+		return result;
 	}
 
 }
