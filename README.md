@@ -8,6 +8,8 @@ Sovellus on tetris peli. Pelissä on erimuotoisia neljästä neliöstä koostuvi
 
 [Työaikakirjanpito](https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md) 
 
+[Arkkitehtuurikuvaus](https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md) 
+
 ## Komentorivitoiminnot
 
 ### Testaus
