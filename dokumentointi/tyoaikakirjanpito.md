@@ -7,4 +7,7 @@
 | 9.16 | 1 | maveniin tutustumista |
 | 9.17 | 2 | maveniin ja javafx:ään tutustumista ja projektin aloittaminen |
 | 9.19 | 3 | toimiva käyttöliittymä ja toiminnallisuuden aloittaminen, testit lisätty |
+| 9.25 | 2 | näppäimistö inputin opiskelua, tippuvan palikan liikuttamista |
+| 9.26 | 3 | jatkoa eiliselle, testejä ja tominnallisuuksien lisääminen |
+| yht | 13 |  |
 
