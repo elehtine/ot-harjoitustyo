@@ -106,7 +106,7 @@ public class Grid {
 
 	// Fix collision
 	public boolean dropBlock() {
-		if (canMove(x, y+1, block)) {
+		if (canMove(x, y + 1, block)) {
 			++y;
 			return true;
 		}
@@ -146,14 +146,6 @@ public class Grid {
 					continue;
 				}
 				if (block[i][j] && grid[newX][newY] != colorNb) {
-					for (int u = 0; u < width; ++u) {
-						for (int v = 0; v < height; ++v) {
-							System.out.print(grid[u][v]);
-						}
-						System.out.println();
-					}
-
-					System.out.println(newX+":"+newY);
 					return false;
 				}
 			}
