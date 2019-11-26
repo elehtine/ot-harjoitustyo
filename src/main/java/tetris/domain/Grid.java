@@ -18,32 +18,35 @@ public class Grid {
 	private int x;
 	private int y;
 	
-	private final int COLOR_NB = 2;
+	private int colorNb	= 2;
 	private final Color[] COLORS = new Color[] { Color.WHITE, Color.AQUA, Color.BLACK };
 
-	private final boolean T = true;
-	private final boolean F = false;
+	private final boolean t = true;
+	private final boolean f = false;
 
-	private final int BLOCK_WIDTH = 5;
-	private final int BLOCK_ADD = -2;
+	private final int startX = 5;
+	private final int startY = 2;
+
+	private int blockWidth = 5;
+	private int blockAdd = -2;
 
 	/**
 	 * Empty block for testing
 	 */
 	private final boolean[][] EMPTY_BLOCK = new boolean[][] {
-		{ F, F ,F, F, F },
-		{ F, F ,F, F, F },
-		{ F, F ,T, F, F },
-		{ F, F ,F, F, F },
-		{ F, F ,F, F, F }
+		{ f, f, f, f, f },
+		{ f, f, f, f, f },
+		{ f, f, t, f, f },
+		{ f, f, f, f, f },
+		{ f, f, f, f, f } 
 	};
 
 	private final boolean[][] I_BLOCK = new boolean[][] {
-		{ F, F ,F, F, F },
-		{ F, F ,F, F, F },
-		{ T, T ,T, T, F },
-		{ F, F ,F, F, F },
-		{ F, F ,F, F, F }
+		{ f, f, f, f, f },
+		{ f, f, f, f, f },
+		{ t, t, t, t, f },
+		{ f, f, f, f, f },
+		{ f, f, f, f, f }
 	};
 
 	public Grid(int width, int height) {
@@ -62,48 +65,103 @@ public class Grid {
 		if (block == null) {
 			return result;
 		}
-		for (int i = 0; i < BLOCK_WIDTH; ++i) {
-			for (int j = 0; j < BLOCK_WIDTH; ++j) {
-				if (i+x + BLOCK_ADD < 0 || i+x + BLOCK_ADD >= width) {
+		for (int i = 0; i < blockWidth; ++i) {
+			for (int j = 0; j < blockWidth; ++j) {
+				if (i + x + blockAdd < 0 || i + x + blockAdd >= width) {
 					continue;
 				}
-				if (j+y < 0 || j+y >= height) {
+				if (j + y + blockAdd < 0 || j + y + blockAdd >= height) {
 					continue;
 				}
-				result[i+x + BLOCK_ADD][j+y] = block[i][j] ? blockColor : COLOR_NB;
+				result[i + x + blockAdd][j + y + blockAdd] = block[i][j] ? blockColor : colorNb;
 			}
 		}
 		return result;
 	}
 
-	// TODO: Fix to final variables
 	public void newBlock() {
 		block = I_BLOCK;
 		blockColor = 1;
-		x = 5;
-		y = 0;
+		x = startX;
+		y = startY;
 	}
 
 	// rotate block clockwise
-	public void rotateBlock() {
-		boolean[][] temp = new boolean[BLOCK_WIDTH][BLOCK_WIDTH];
-		for (int i = 0; i < BLOCK_WIDTH; ++i) {
-			for (int j = 0; j < BLOCK_WIDTH; ++j) {
-				temp[i][j] = block[BLOCK_WIDTH-1 -j][i];
+	public boolean rotateBlock() {
+		boolean[][] temp = new boolean[blockWidth][blockWidth];
+		for (int i = 0; i < blockWidth; ++i) {
+			for (int j = 0; j < blockWidth; ++j) {
+				temp[i][j] = block[blockWidth - 1 - j][i];
 			}
 		}
-		block = temp;
+		if (canMove(x, y, temp)) {
+			block = temp;
+			return true;
+		}
+		return false;
 	}
 
 	// Fix collision
-	public void moveBlock() {
-		++y;
+	public boolean dropBlock() {
+		if (canMove(x, y+1, block)) {
+			++y;
+			return true;
+		}
+		return false;
+	}
+
+	public boolean hardDrop() {
+		boolean result = false;
+		while (dropBlock()) {
+			result = true;
+		}
+		return result;
+	}
+
+	public boolean move(int dx) {
+		if (dx != 1 && dx != -1) {
+			return false;
+		}
+		if (canMove(x + dx, y, block)) {
+			x += dx;
+			return true;
+		}
+		return false;
+	}
+		
+
+	public boolean canMove(int x, int y, boolean[][] block) {
+		for (int i = 0; i < block.length; ++i) {
+			for (int j = 0; j < block[0].length; ++j) {
+				int newX = x + i + blockAdd;
+				int newY = y + j + blockAdd;
+				if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
+					if (block[i][j]) {
+						System.out.println("over");
+						return false;
+					}
+					continue;
+				}
+				if (block[i][j] && grid[newX][newY] != colorNb) {
+					for (int u = 0; u < width; ++u) {
+						for (int v = 0; v < height; ++v) {
+							System.out.print(grid[u][v]);
+						}
+						System.out.println();
+					}
+
+					System.out.println(newX+":"+newY);
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	public int getBlockHash() {
 		int hash = 0;
-		for (int i = 0; i < BLOCK_WIDTH; ++i) {
-			for (int j = 0; j < BLOCK_WIDTH; ++j) {
+		for (int i = 0; i < blockWidth; ++i) {
+			for (int j = 0; j < blockWidth; ++j) {
 				if (block[i][j]) {
 					++hash;
 				}
@@ -117,11 +175,27 @@ public class Grid {
 		return COLORS;
 	}
 
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
 	private void initGrid() {
 		this.grid = new int[width][height];
 		for (int i = 0; i < width; ++i) {
 			for (int j = 0; j < height; ++j) {
-				grid[i][j] = COLOR_NB;
+				grid[i][j] = colorNb;
 			}
 		}
 		newBlock();

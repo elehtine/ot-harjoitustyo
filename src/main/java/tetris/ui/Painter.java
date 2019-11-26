@@ -17,7 +17,7 @@ public class Painter {
 		for (int i = 0; i < grid.length; ++i) {
 			for (int j = 0; j < grid[0].length; ++j) {
 				gc.setFill(colors[ grid[i][j] ]);
-				gc.fillRect(i*pxWidth, j*pxWidth, pxWidth, pxWidth);
+				gc.fillRect(i * pxWidth, j * pxWidth, pxWidth, pxWidth);
 			}
 		}
 	}
