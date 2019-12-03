@@ -3,11 +3,14 @@
 | päivä | aika | mitä tein  |
 | :----:|:-----| :-----|
 | 9.11 | 1 | vaatimusmäärittely |
-| 9.15 | 1 | repositoryn siistimistä |
-| 9.16 | 1 | maveniin tutustumista |
-| 9.17 | 2 | maveniin ja javafx:ään tutustumista ja projektin aloittaminen |
-| 9.19 | 3 | toimiva käyttöliittymä ja toiminnallisuuden aloittaminen, testit lisätty |
-| 9.25 | 2 | näppäimistö inputin opiskelua, tippuvan palikan liikuttamista |
-| 9.26 | 3 | jatkoa eiliselle, testejä ja tominnallisuuksien lisääminen |
-| yht | 13 |  |
+| 15.11 | 1 | repositoryn siistimistä |
+| 16.11 | 1 | maveniin tutustumista |
+| 17.11 | 2 | maveniin ja javafx:ään tutustumista ja projektin aloittaminen |
+| 19.11 | 3 | toimiva käyttöliittymä ja toiminnallisuuden aloittaminen, testit lisätty |
+| 25.11 | 2 | näppäimistö inputin opiskelua, tippuvan palikan liikuttamista |
+| 26.11 | 3 | jatkoa eiliselle, testejä ja tominnallisuuksien lisääminen |
+| 1.12 | 2 | rinnakkaisuuden opiskelua ja arkkitehtuurin miettimistä |
+| 2.12 | 2 | palikan tippumisen koodaamista |
+| 3.12 | 2 | checkstyle ja dokumentaatio korjauksia |
+| yht | 19 |  |
 

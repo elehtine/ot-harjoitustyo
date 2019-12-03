@@ -20,7 +20,7 @@ Sovellus koostuu neljästä eri näkymästä
 
 ### Ennen kirjautumista
 
-- käyttäjä voi pelata peliä (kesken)
+- käyttäjä voi pelata peliä (tehty)
 - käyttäjä voi pelin vaihtaa asetuksia
 - pelaaja voi selata huipputuloksia
 
@@ -42,7 +42,7 @@ Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seura
 - eri pelimuotoja
   - ajan myötä haasteen kasvattaminen
 
-- suodatin ja haku toimintoja huipputuloksiin
+- suodatin- ja hakutoimintoja huipputuloksiin
 
 - käyttäjille salasana
 
