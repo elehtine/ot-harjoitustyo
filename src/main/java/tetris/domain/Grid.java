@@ -19,14 +19,18 @@ public class Grid {
 	private int x;
 	private int y;
 	
-	private static final int COLOR_NB = 2;
-	private static final Color[] COLORS = new Color[] { Color.VIOLET, Color.AQUA, Color.BLACK };
+	private static final int COLOR_NB = 7;
+	private static final Color[] COLORS = new Color[] { 
+		Color.VIOLET, Color.AQUA, Color.GREEN,
+		Color.RED, Color.BLUE, Color.ORANGE,
+		Color.YELLOW, Color.BLACK 
+	};
 
 	private static final boolean T = true;
 	private static final boolean F = false;
 
-	private static final int[] START_X = { 5, 5 };
-	private static final int[] START_Y = { 1, 2 };
+	private static final int[] START_X = { 5, 5, 5, 5, 5, 5, 5 };
+	private static final int[] START_Y = { 1, 2, 1, 1, 1, 1, 1 };
 
 	private static final int BLOCK_WIDTH = 5;
 	private static final int BLOCK_ADD = -2;
@@ -60,12 +64,56 @@ public class Grid {
 		{ F, F, F, F, F }
 	};
 
+	private static final boolean[][] S_BLOCK = new boolean[][] {
+		{ F, F, F, F, F },
+		{ F, F, T, T, F },
+		{ F, T, T, F, F },
+		{ F, F, F, F, F },
+		{ F, F, F, F, F }
+	};
+
+	private static final boolean[][] Z_BLOCK = new boolean[][] {
+		{ F, F, F, F, F },
+		{ F, T, T, F, F },
+		{ F, F, T, T, F },
+		{ F, F, F, F, F },
+		{ F, F, F, F, F } 
+	};
+
+	private static final boolean[][] J_BLOCK = new boolean[][] {
+		{ F, F, F, F, F },
+		{ F, F, T, T, F },
+		{ F, F, T, F, F },
+		{ F, F, T, F, F },
+		{ F, F, F, F, F } 
+	};
+
+	private static final boolean[][] L_BLOCK = new boolean[][] {
+		{ F, F, F, F, F },
+		{ F, T, T, F, F },
+		{ F, F, T, F, F },
+		{ F, F, T, F, F },
+		{ F, F, F, F, F } 
+	};
+
+	private static final boolean[][] O_BLOCK = new boolean[][] {
+		{ F, F, F, F, F },
+		{ F, F, T, T, F },
+		{ F, F, T, T, F },
+		{ F, F, F, F, F },
+		{ F, F, F, F, F } 
+	};
+
 	private boolean[][][] blocks;
 
 	// For testing
 	public Grid(int width, int height, int index) {
 		this.random = new Random(System.nanoTime());
-		blocks = new boolean[][][] { T_BLOCK, I_BLOCK };
+		this.blocks = new boolean[][][] {
+			T_BLOCK, I_BLOCK, S_BLOCK, 
+			Z_BLOCK, J_BLOCK, L_BLOCK,
+			O_BLOCK
+		};
 		this.width = width;
 		this.height = height;
 		initGrid(index);
@@ -73,7 +121,11 @@ public class Grid {
 
 	public Grid(int width, int height) {
 		this.random = new Random(System.nanoTime());
-		this.blocks = new boolean[][][] { T_BLOCK, I_BLOCK };
+		this.blocks = new boolean[][][] {
+			T_BLOCK, I_BLOCK, S_BLOCK, 
+			Z_BLOCK, J_BLOCK, L_BLOCK,
+			O_BLOCK
+		};
 		this.width = width;
 		this.height = height;
 		initGrid(COLOR_NB);
@@ -87,6 +139,7 @@ public class Grid {
 				}
 			}
 		}
+		removeLines();
 		return newBlock(COLOR_NB);
 	}
 
@@ -116,6 +169,18 @@ public class Grid {
 		if (canMove(x, y, temp)) {
 			block = temp;
 			return true;
+		}
+		for (int i = 1; i <= 2; ++i) {
+			if (canMove(x + i, y, temp)) {
+				x += i;
+				block = temp;
+				return true;
+			}
+			if (canMove(x - i, y, temp)) {
+				x -= i;
+				block = temp;
+				return true;
+			}
 		}
 		return false;
 	}
@@ -230,6 +295,23 @@ public class Grid {
 			}
 		}
 		newBlock(index);
+	}
+
+	// TODO: Calculate points
+	private void removeLines() {
+		int add = 0;
+		for (int j = height-1; j >= 0; --j) {
+			boolean remove = true;
+			for (int i = 0; i < width; ++i) {
+				if (grid[i][j] == COLOR_NB) {
+					remove = false;
+				}
+				grid[i][j + add] = grid[i][j];
+			}
+			if (remove) {
+				++add;
+			}
+		}
 	}
 
 	private static int[][] copy(int[][] array) {
