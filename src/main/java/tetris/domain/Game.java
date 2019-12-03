@@ -2,9 +2,12 @@ package tetris.domain;
 
 import javafx.scene.paint.*;
 
-public class Game {
+public class Game extends Thread {
 
 	private Grid grid;
+	private boolean isChanged;
+	private boolean running;
+	private static final long SLEEP_TIME = 1000;
 
 	private int width = 10;
 	private int height = 20;
@@ -17,8 +20,26 @@ public class Game {
 		grid = new Grid(width, height);
 	}
 
+	@Override
+	public void run() {
+		System.out.println("RUN GAME");
+		running = true;
+		while (running) {
+			drop();
+
+			try {
+				Thread.sleep(SLEEP_TIME);
+			} catch (Exception e) {
+				e.printStackTrace();
+				running = false;
+			}
+		}
+	}
+
 	public void rotate() {
-		grid.rotateBlock();
+		if (grid.rotateBlock()) {
+			isChanged = true;
+		}
 	}
 
 	/*
@@ -29,14 +50,26 @@ public class Game {
 		if (dx != 1 && dx != -1) {
 			return;
 		}
-		grid.move(dx);
+		if (grid.move(dx)) {
+			isChanged = true;
+		}
 	}
 
-	public void drop() {
-		System.out.println(grid.dropBlock());
+	public boolean drop() {
+		isChanged = true;
+		if (grid.dropBlock()) {
+			return true;
+		}
+		grid.nextBlock();
+		return false;
 	}
 
 	public void hardDrop() {
+		while (grid.dropBlock()) {
+			// Later count points from dropping distance
+		}
+		grid.nextBlock();
+		isChanged = true;
 	}
 
 	// TODO: Refactor these
@@ -46,6 +79,12 @@ public class Game {
 
 	public Color[] getColors() {
 		return grid.getColors();
+	}
+
+	public boolean getIsChanged() {
+		boolean result = isChanged;
+		isChanged = false;
+		return result;
 	}
 
 }
