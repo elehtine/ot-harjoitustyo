@@ -4,10 +4,12 @@ import javafx.scene.paint.*;
 
 public class Game extends Thread {
 
+	private static final long SLEEP_TIME = 1000;
+
 	private Grid grid;
 	private boolean isChanged;
 	private boolean running;
-	private static final long SLEEP_TIME = 1000;
+	private boolean isStarted; // For testing
 
 	private int width = 10;
 	private int height = 20;
@@ -23,6 +25,7 @@ public class Game extends Thread {
 	@Override
 	public void run() {
 		running = true;
+		isStarted = true;
 		while (running) {
 			drop();
 
@@ -83,7 +86,6 @@ public class Game extends Thread {
 		isChanged = true;
 	}
 
-	// TODO: Refactor these
 	public int[][] getGrid() {
 		return grid.getGrid();
 	}
@@ -96,6 +98,24 @@ public class Game extends Thread {
 		boolean result = isChanged;
 		isChanged = false;
 		return result;
+	}
+
+	/**
+	 * Only for testing
+	 */
+	public boolean getRunning() {
+		for (int i = 0; i < 10; ++i) {
+			if (isStarted) {
+				break;
+			}
+			try {
+				Thread.sleep(100);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+		return running;
 	}
 
 }
