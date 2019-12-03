@@ -66,6 +66,7 @@ public class Game extends Thread {
 
 	public void hardDrop() {
 		while (grid.dropBlock()) {
+			;
 			// Later count points from dropping distance
 		}
 		grid.nextBlock();

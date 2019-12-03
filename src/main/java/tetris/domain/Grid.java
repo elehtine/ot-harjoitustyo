@@ -25,8 +25,8 @@ public class Grid {
 	private static final boolean T = true;
 	private static final boolean F = false;
 
-	private static final int[] startX = { 5, 5 };
-	private static final int[] startY = { 1, 2 };
+	private static final int[] START_X = { 5, 5 };
+	private static final int[] START_Y = { 1, 2 };
 
 	private static final int BLOCK_WIDTH = 5;
 	private static final int BLOCK_ADD = -2;
@@ -36,7 +36,7 @@ public class Grid {
 	/**
 	 * Empty block for testing
 	 */
-	private final boolean[][] EMPTY_BLOCK = new boolean[][] {
+	private static final boolean[][] EMPTY_BLOCK = new boolean[][] {
 		{ F, F, F, F, F },
 		{ F, F, F, F, F },
 		{ F, F, T, F, F },
@@ -44,7 +44,7 @@ public class Grid {
 		{ F, F, F, F, F } 
 	};
 
-	private final boolean[][] T_BLOCK = new boolean[][] {
+	private static final boolean[][] T_BLOCK = new boolean[][] {
 		{ F, F, F, F, F },
 		{ F, F, F, F, F },
 		{ F, T, T, T, F },
@@ -52,7 +52,7 @@ public class Grid {
 		{ F, F, F, F, F }
 	};
 
-	private final boolean[][] I_BLOCK = new boolean[][] {
+	private static final boolean[][] I_BLOCK = new boolean[][] {
 		{ F, F, F, F, F },
 		{ F, F, F, F, F },
 		{ T, T, T, T, F },
@@ -98,8 +98,8 @@ public class Grid {
 			blockColor = index;
 		}
 		block = blocks[blockColor];
-		x = startX[blockColor];
-		y = startY[blockColor];
+		x = START_X[blockColor];
+		y = START_Y[blockColor];
 	}
 
 	// rotate block clockwise
