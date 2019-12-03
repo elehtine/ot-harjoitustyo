@@ -32,7 +32,6 @@ public class TetrisUi extends Application {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-				System.out.println(event.toString());
                 switch (event.getCode()) {
                     case UP:    game.rotate(); break;
                     case DOWN:  game.drop(); break;

@@ -23,7 +23,6 @@ public class Painter extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("START PAINTER");
 		running = true;
 
 		while (running) {

@@ -79,8 +79,7 @@ public class Grid {
 		initGrid(COLOR_NB);
 	}
 
-	public void nextBlock() {
-		System.out.println("something");
+	public boolean nextBlock() {
 		for (int i = 0; i < BLOCK_WIDTH; ++i) {
 			for (int j = 0; j < BLOCK_WIDTH; ++j) {
 				if (block[i][j]) {
@@ -88,10 +87,10 @@ public class Grid {
 				}
 			}
 		}
-		newBlock(COLOR_NB);
+		return newBlock(COLOR_NB);
 	}
 
-	public void newBlock(int index) {
+	public boolean newBlock(int index) {
 		if (index == COLOR_NB) {
 			blockColor = random.nextInt(COLOR_NB);
 		} else {
@@ -100,6 +99,10 @@ public class Grid {
 		block = blocks[blockColor];
 		x = START_X[blockColor];
 		y = START_Y[blockColor];
+		if (!canMove(x, y, block)) {
+			return false;
+		}
+		return true;
 	}
 
 	// rotate block clockwise
@@ -153,13 +156,11 @@ public class Grid {
 				int newY = y + j + BLOCK_ADD;
 				if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
 					if (block[i][j]) {
-						System.out.println("over");
 						return false;
 					}
 					continue;
 				}
 				if (block[i][j] && grid[newX][newY] != COLOR_NB) {
-					System.out.println("hit");
 					return false;
 				}
 			}

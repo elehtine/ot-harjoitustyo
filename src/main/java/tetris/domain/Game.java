@@ -22,7 +22,6 @@ public class Game extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("RUN GAME");
 		running = true;
 		while (running) {
 			drop();
@@ -55,13 +54,12 @@ public class Game extends Thread {
 		}
 	}
 
-	public boolean drop() {
-		isChanged = true;
+	public void drop() {
 		if (grid.dropBlock()) {
-			return true;
+			isChanged = true;
+			return;
 		}
-		grid.nextBlock();
-		return false;
+		newBlock();
 	}
 
 	public void hardDrop() {
@@ -69,7 +67,15 @@ public class Game extends Thread {
 			;
 			// Later count points from dropping distance
 		}
-		grid.nextBlock();
+		newBlock();
+	}
+
+	private void newBlock() {
+		if (grid.nextBlock()) {
+			isChanged = true;
+			return;
+		}
+		grid = new Grid(width, height);
 		isChanged = true;
 	}
 
