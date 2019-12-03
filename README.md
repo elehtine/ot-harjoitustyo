@@ -14,6 +14,10 @@ Käytetty JavaFX voi aiheuttaa ongelmia. Kuitenkin kaikki on tähän mennessä t
 
 [Arkkitehtuurikuvaus](https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md) 
 
+## Releaset
+
+[Viikko 5](https://github.com/elehtine/tetris/releases)
+
 ## Komentorivitoiminnot
 
 ### Testaus
