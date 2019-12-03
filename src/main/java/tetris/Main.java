@@ -1,3 +1,5 @@
+package tetris;
+
 import tetris.ui.TetrisUi;
 
 public class Main {
