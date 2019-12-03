@@ -35,6 +35,10 @@ public class Game extends Thread {
 		}
 	}
 
+	public void terminate() {
+		running = false;
+	}
+
 	public void rotate() {
 		if (grid.rotateBlock()) {
 			isChanged = true;

@@ -2,6 +2,10 @@
 
 Sovellus on tetris peli. Pelissä on erimuotoisia neljästä neliöstä koostuvia palikoita. Palikat putoavat peliin yksikerrallaan. Pelaajan ohjata niiden putoamista. Jos palikat muodostavat täyden vaakarivin, tämä katoaa. Näistä riveistä saa pisteitä.
 
+## Huomio Javan versiosta
+
+Käytetty JavaFX voi aiheuttaa ongelmia. Kuitenkin kaikki on tähän mennessä toiminut, joten toivottavasti ei tule ongelmia. 
+
 ## Dokumentaatio
 
 [Vaatimusmäärittely](https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)

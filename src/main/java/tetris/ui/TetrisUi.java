@@ -13,6 +13,7 @@ import tetris.domain.Game;
 public class TetrisUi extends Application {
 
 	private Game game;
+	private Painter painter;
 	private Scene gameScene;
 	private final int PX_WIDTH = 20;
 
@@ -22,7 +23,7 @@ public class TetrisUi extends Application {
 		// Add other scenes later
 		Canvas canvas = new Canvas(500, 600);
 		game = new Game();
-		Painter painter = new Painter(canvas.getGraphicsContext2D(), game);
+		painter = new Painter(canvas.getGraphicsContext2D(), game);
 		game.start();
 		painter.start();
 
@@ -44,6 +45,12 @@ public class TetrisUi extends Application {
 		primaryStage.setTitle("Tetris");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+
+	@Override
+	public void stop() {
+		game.terminate();
+		painter.terminate();
 	}
 
 	public static void main(String[] args) {
