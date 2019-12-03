@@ -12,5 +12,6 @@
 | 1.12 | 2 | rinnakkaisuuden opiskelua ja arkkitehtuurin miettimistä |
 | 2.12 | 2 | palikan tippumisen koodaamista |
 | 3.12 | 2 | checkstyle ja dokumentaatio korjauksia |
-| yht | 19 |  |
+| 3.12 | 3 | lisää ominaisuuksia (palikat, rivien poisto) ja testausta |
+| yht | 22 |  |
 
