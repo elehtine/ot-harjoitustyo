@@ -6,6 +6,8 @@ Sovellus on tetris peli. Pelissä on erimuotoisia neljästä neliöstä koostuvi
 
 Käytetty JavaFX voi aiheuttaa ongelmia. Kuitenkin kaikki on tähän mennessä toiminut, joten toivottavasti ei tule ongelmia. 
 
+Lisäksi ohjelmassa ollaan käytetty useita säikeitä. Toivottavasti niiden testaaminen toimii, eikä javan eri versiot aiheuta näiden kanssa muutenkaan ongelmia.
+
 ## Dokumentaatio
 
 [Vaatimusmäärittely](https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
