@@ -4,9 +4,8 @@ import javafx.scene.paint.*;
 import java.util.*;
 
 /**
- * Game area
- * Handles falled and falling blocks
- *
+ * Class contains game grid and currently
+ * dropping block
  */
 public class Grid {
 
@@ -37,7 +36,7 @@ public class Grid {
 
 	private Random random;
 
-	/**
+	/*
 	 * Empty block for testing
 	 */
 	private static final boolean[][] EMPTY_BLOCK = new boolean[][] {
@@ -106,7 +105,9 @@ public class Grid {
 
 	private boolean[][][] blocks;
 
-	// For testing
+	/**
+	 * Alternative constructor for testing
+	 */
 	public Grid(int width, int height, int index) {
 		this.random = new Random(System.nanoTime());
 		this.blocks = new boolean[][][] {
@@ -119,6 +120,9 @@ public class Grid {
 		initGrid(index);
 	}
 
+	/**
+	 * Constructor that game use
+	 */
 	public Grid(int width, int height) {
 		this.random = new Random(System.nanoTime());
 		this.blocks = new boolean[][][] {
@@ -131,6 +135,13 @@ public class Grid {
 		initGrid(COLOR_NB);
 	}
 
+	/**
+	 * Adds block to grid and call new block method
+	 * 
+	 * @see tetris.domain.Grid#newBlock(int)
+	 *
+	 * @return can game be continued or is it over
+	 */
 	public boolean nextBlock() {
 		for (int i = 0; i < BLOCK_WIDTH; ++i) {
 			for (int j = 0; j < BLOCK_WIDTH; ++j) {
@@ -143,6 +154,11 @@ public class Grid {
 		return newBlock(COLOR_NB);
 	}
 
+	/**
+	 * Summons new block
+	 * 
+	 * @return can game be continued or is it over
+	 */
 	public boolean newBlock(int index) {
 		if (index == COLOR_NB) {
 			blockColor = random.nextInt(COLOR_NB);
@@ -158,7 +174,11 @@ public class Grid {
 		return true;
 	}
 
-	// rotate block clockwise
+	/**
+	 * Rotates block counter clockwise
+	 *
+	 * @return is rotation legal
+	 */
 	public boolean rotateBlock() {
 		boolean[][] temp = new boolean[BLOCK_WIDTH][BLOCK_WIDTH];
 		for (int i = 0; i < BLOCK_WIDTH; ++i) {
