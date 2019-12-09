@@ -13,5 +13,7 @@
 | 2.12 | 2 | palikan tippumisen koodaamista |
 | 3.12 | 2 | checkstyle ja dokumentaatio korjauksia |
 | 3.12 | 3 | lisää ominaisuuksia (palikat, rivien poisto) ja testausta |
-| yht | 22 |  |
+| 7.12 | 1 | javadocin tutkiminen |
+| 9.12 | 2 | javadoc käyttöön tietokantojen ja käyttäjän aloittelu |
+| yht | 25 |  |
 
