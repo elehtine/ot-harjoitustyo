@@ -6,21 +6,22 @@ import java.util.Scanner;
 import java.util.*;
 
 import tetris.domain.User;
+import tetris.domain.HighScore;
 
-public class FileUserDao implements UserDao {
+public class FileHighScoreDao implements HighScoreDao {
 
-	private List<User> users;
+	private List<HighScore> highScores;
 	private String file;
 
-	public FileUserDao(String file) throws Exception {
-        this.users = new ArrayList<>();
+	public FileHighScoreDao(String file) throws Exception {
+        this.highScores = new ArrayList<>();
         this.file = file;
         try {
             Scanner reader = new Scanner(new File(file));
             while (reader.hasNextLine()) {
                 String[] parts = reader.nextLine().split(";");
-                User u = new User(parts[0], parts[1]);
-                users.add(u);
+                HighScore score = new HighScore(parts[0], Integer.parseInt(parts[1]));
+                highScores.add(score);
             }
         } catch (Exception e) {
             FileWriter writer = new FileWriter(new File(file));
@@ -29,34 +30,17 @@ public class FileUserDao implements UserDao {
     }
 
 	@Override
-	public List<User> findAll() {
-		return users;
+	public List<HighScore> findAll() {
+		return highScores;
 	}
-
-	@Override
-	public void create(User user) {
-		users.add(user);
-	}
-
-
 
 	@Override
 	public void save() throws Exception {
 		try (FileWriter writer = new FileWriter(new File(file))) {
-            for (User user : users) {
-                writer.write(user.getUsername() + ";" + user.getPasswordHash() + "\n");
+            for (HighScore score : highScores) {
+                writer.write(score.getUsername() + ";" + score.getScore());
             }
         }
-	}
-
-	@Override
-	public User findByUsername(String username) {
-		for (User u: users) {
-			if (u.getUsername().equals(username)) {
-				return u;
-			}
-		}
-		return null;
 	}
 
 }

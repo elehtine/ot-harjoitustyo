@@ -25,7 +25,7 @@ public class PasswordHandler {
 	/**
 	 * @return true if password produces same hash
 	 */ 
-	public boolean comparePassword(String password, int passwordHash) {
+	public boolean checkPassword(String password, int passwordHash) {
 		return passwordHash == getPasswordHash(password);
 	}
 
