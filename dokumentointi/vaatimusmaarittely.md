@@ -13,8 +13,8 @@ Alkuvaiheessa ei ole tarkoitus tehdä minkäänlaista käyttäjää. Kun pelimek
 Sovellus koostuu neljästä eri näkymästä
 - peli näkymä (tehty)
 - asetus näkymä
-- huipputulos näkymä
-- kirjautumis näkymä
+- huipputulos näkymä (kesken)
+- kirjautumis näkymä (tehty)
 
 ## Perusversion tarjoama toiminnallisuus
 
@@ -22,13 +22,13 @@ Sovellus koostuu neljästä eri näkymästä
 
 - käyttäjä voi pelata peliä (tehty)
 - käyttäjä voi pelin vaihtaa asetuksia
-- pelaaja voi selata huipputuloksia
+- pelaaja voi selata huipputuloksia (kesken)
 
 ### Kirjautumisen jälkeen
 
-- käyttäjä voi katsoa huipputuloksia
-- käyttäjä voi poistaa tuloksiaan
-- käyttäjä voi kirjautua ulos järjestelmästä
+- käyttäjä voi katsoa huipputuloksia (kesken)
+- käyttäjä voi poistaa tuloksiaan (kesken)
+- käyttäjä voi kirjautua ulos järjestelmästä (tehty)
 
 ## Jatkokehitysideoita
 
@@ -44,7 +44,7 @@ Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seura
 
 - suodatin- ja hakutoimintoja huipputuloksiin
 
-- käyttäjille salasana
+- käyttäjille salasana (tehty)
 
 - käyttäjätunnuksen poisto
 
