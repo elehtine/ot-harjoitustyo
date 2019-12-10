@@ -150,8 +150,23 @@ public class Grid {
 				}
 			}
 		}
-		removeLines();
 		return newBlock(COLOR_NB);
+	}
+
+	/**
+	 * Adds block to grid
+	 *
+	 * @return points from removed lines
+	 */
+	public int blockToGrid() {
+		for (int i = 0; i < BLOCK_WIDTH; ++i) {
+			for (int j = 0; j < BLOCK_WIDTH; ++j) {
+				if (block[i][j]) {
+					grid[i + x + BLOCK_ADD][j + y + BLOCK_ADD] = blockColor;
+				}
+			}
+		}
+		return removeLines();
 	}
 
 	/**
@@ -317,8 +332,12 @@ public class Grid {
 		newBlock(index);
 	}
 
-	// TODO: Calculate points
-	private void removeLines() {
+	/**
+	 * Removes full lines
+	 *
+	 * @return Points frome removed lines
+	 */
+	private int removeLines() {
 		int add = 0;
 		for (int j = height-1; j >= 0; --j) {
 			boolean remove = true;
@@ -332,6 +351,7 @@ public class Grid {
 				++add;
 			}
 		}
+		return 2*add*add;
 	}
 
 	private static int[][] copy(int[][] array) {

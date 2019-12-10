@@ -8,6 +8,7 @@ public class Game extends Thread {
 
 	private Grid grid;
 	private boolean isChanged;
+	private int score;
 	private boolean running;
 	private boolean isStarted; // For testing
 
@@ -64,6 +65,7 @@ public class Game extends Thread {
 	public void drop() {
 		if (grid.dropBlock()) {
 			isChanged = true;
+			++score;
 			return;
 		}
 		newBlock();
@@ -71,6 +73,7 @@ public class Game extends Thread {
 
 	public void hardDrop() {
 		while (grid.dropBlock()) {
+			++score;
 			;
 			// Later count points from dropping distance
 		}
@@ -78,6 +81,7 @@ public class Game extends Thread {
 	}
 
 	private void newBlock() {
+		score += grid.blockToGrid();
 		if (grid.nextBlock()) {
 			isChanged = true;
 			return;
@@ -116,6 +120,15 @@ public class Game extends Thread {
 			}
 		}
 		return running;
+	}
+
+	/**
+	 * Returns current score
+	 *
+	 * @return Current score of game
+	 */
+	public int getScore() {
+		return score;
 	}
 
 }

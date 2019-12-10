@@ -19,21 +19,21 @@ public class PasswordHandlerTest {
 
 	@Test
 	public void modifiesHashValue() {
-		assertFalse(passwordHandler.comparePassword("password", 1));
+		assertFalse(passwordHandler.checkPassword("password", 1));
 	}
 
 	@Test
 	public void identifyCorrectPassword() {
 		String password = "password";
 		int passwordHash = passwordHandler.getPasswordHash(password);
-		assertTrue(passwordHandler.comparePassword(password, passwordHash));
+		assertTrue(passwordHandler.checkPassword(password, passwordHash));
 	}
 
 	@Test
 	public void identifyWrongPassword() {
 		int correctPasswordHash = passwordHandler.getPasswordHash("password");
 		String wrongPassword = "apssword";
-		assertFalse(passwordHandler.comparePassword(wrongPassword, correctPasswordHash));
+		assertFalse(passwordHandler.checkPassword(wrongPassword, correctPasswordHash));
 	}
 
 }

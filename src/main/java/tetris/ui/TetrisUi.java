@@ -59,6 +59,30 @@ public class TetrisUi extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		
+		// Tetris game scene
+		
+		Canvas canvas = new Canvas(500, 600);
+		Group root = new Group();
+		root.getChildren().addAll(canvas);
+		Scene gameScene = new Scene(root);
+		gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case UP:    game.rotate(); break;
+                    case DOWN:  game.drop(); break;
+                    case LEFT:  game.move(-1); break;
+                    case RIGHT: game.move(1); break;
+                    case SPACE: game.hardDrop(); break;
+                    case ESCAPE:
+						stopGames();
+						primaryStage.setScene(mainMenuScene);
+						break;
+                }
+            }
+        });
+
 
 		// Main menu scene
 
@@ -70,8 +94,9 @@ public class TetrisUi extends Application {
         
         Button changeUserButton = new Button("Change User");
         Button createUserButton = new Button("Create User");
+        Button gameButton = new Button("Play Tetris");
         Button highScoreButton = new Button("Show High Scores");
-        buttonPane.getChildren().addAll(changeUserButton, createUserButton, highScoreButton);
+        buttonPane.getChildren().addAll(changeUserButton, createUserButton, gameButton, highScoreButton);
 
         changeUserButton.setOnAction(e -> {
 			primaryStage.setScene(loginScene);
@@ -79,6 +104,14 @@ public class TetrisUi extends Application {
 		});
         createUserButton.setOnAction(e -> {
 			primaryStage.setScene(createUserScene);
+			errorMessage = "";
+		});
+        gameButton.setOnAction(e -> {
+			primaryStage.setScene(gameScene);
+			game = new Game();
+			painter = new Painter(canvas.getGraphicsContext2D(), game, userHighScoreService);
+			game.start();
+			painter.start();
 			errorMessage = "";
 		});
         highScoreButton.setOnAction(e -> {
@@ -89,38 +122,15 @@ public class TetrisUi extends Application {
         mainMenuPane.getChildren().addAll(buttonPane, userNameLabel);
         mainMenuScene = new Scene(mainMenuPane, 300, 250);    
 		
-		
-		// Tetris game scene
-		
-		Canvas canvas = new Canvas(500, 600);
-		game = new Game();
-		painter = new Painter(canvas.getGraphicsContext2D(), game);
-		game.start();
-		painter.start();
-
-		Group root = new Group();
-		root.getChildren().add(canvas);
-		Scene gameScene = new Scene(root);
-		gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case UP:    game.rotate(); break;
-                    case DOWN:  game.drop(); break;
-                    case LEFT:  game.move(-1); break;
-                    case RIGHT: game.move(1); break;
-                    case SPACE: game.hardDrop(); break;
-                }
-            }
-        });
-
 		// Login scene
 		
 
 		VBox loginPane = new VBox(10);
 		HBox userNamePane = new HBox(10);
-		TextField usernameInput = new TextField();
-		TextField passwordInput = new TextField();
+		TextField loginUsernameInput = new TextField();
+		TextField loginPasswordInput = new TextField();
+		Label loginUsernameLabel = new Label("Username: ");
+		Label loginPasswordLabel = new Label("Password: ");
 		Label loginErrorLabel = new Label(errorMessage);
 
 		Button loginButton = new Button("Login");
@@ -128,8 +138,8 @@ public class TetrisUi extends Application {
 
 		mainMenuButton.setOnAction(e -> primaryStage.setScene(mainMenuScene));
 		loginButton.setOnAction(e -> {
-			String username = usernameInput.getText();
-			String password = passwordInput.getText();
+			String username = loginUsernameInput.getText();
+			String password = loginPasswordInput.getText();
 			if (userHighScoreService.isCorrectLogin(username, password)) {
 				this.username = username;
 				userNameLabel.setText(username);
@@ -141,7 +151,9 @@ public class TetrisUi extends Application {
 			}
 		});
 		
-		userNamePane.getChildren().addAll(usernameInput, passwordInput, loginButton, mainMenuButton);
+		userNamePane.getChildren().addAll(loginUsernameLabel, loginUsernameInput,
+				loginPasswordLabel, loginPasswordInput,
+				loginButton, mainMenuButton);
 		loginPane.getChildren().addAll(userNamePane, loginErrorLabel);
 		loginScene = new Scene(loginPane);
 
@@ -152,6 +164,8 @@ public class TetrisUi extends Application {
 		HBox newUserPane = new HBox(10);
 		TextField newUsernameInput = new TextField();
 		TextField newPasswordInput = new TextField();
+		Label newUsernameLabel = new Label(errorMessage);
+		Label newPasswordLabel = new Label(errorMessage);
 		Label createUserErrorLabel = new Label(errorMessage);
 
 		Button createButton = new Button("Create");
@@ -159,8 +173,8 @@ public class TetrisUi extends Application {
 
 		backMainMenuButton.setOnAction(e -> primaryStage.setScene(mainMenuScene));
 		createButton.setOnAction(e -> {
-			String username = usernameInput.getText();
-			String password = passwordInput.getText();
+			String username = newUsernameInput.getText();
+			String password = newPasswordInput.getText();
 			if (userHighScoreService.isOkUsername(username)) {
 				this.username = username;
 				userNameLabel.setText(username);
@@ -173,7 +187,9 @@ public class TetrisUi extends Application {
 			}
 		});
 		
-		newUserPane.getChildren().addAll(newUsernameInput, newPasswordInput, createButton, backMainMenuButton);
+		newUserPane.getChildren().addAll(newUsernameLabel, newUsernameInput,
+				newPasswordLabel, newPasswordInput,
+				createButton, backMainMenuButton);
 		createUserPane.getChildren().addAll(newUserPane, createUserErrorLabel);
 		createUserScene = new Scene(createUserPane);
 
