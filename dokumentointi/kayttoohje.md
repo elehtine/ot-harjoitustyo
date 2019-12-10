@@ -27,3 +27,4 @@ Peli näkymässä on seuraavat komennot:
 - nuoli oikealle/vasemmalle liikuttaa palikkaa sivuille
 - nuoli alas liikuttaa palikkaa alaspäin
 - välilyönti tiputtaa palikan pohjaan
+- Escape (esc) näppäin palauttaa aloitusnäkymään
