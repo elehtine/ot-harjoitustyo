@@ -5,3 +5,7 @@ nbproject
 
 # vim session
 code
+
+# database
+users.txt
+high-score.txt
