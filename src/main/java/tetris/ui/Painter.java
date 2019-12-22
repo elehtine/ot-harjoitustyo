@@ -32,7 +32,6 @@ public class Painter extends Thread {
 	public void run () {
 		running = true;
 		game = new Game();
-		game.newGame();
 		game.start();
 		while (running) {
 			if (game.getIsChanged()) {

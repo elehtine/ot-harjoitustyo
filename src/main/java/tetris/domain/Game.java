@@ -16,7 +16,7 @@ public class Game extends Thread {
 	private int width = 10;
 	private int height = 20;
 
-	private void initGame() {
+	public Game() {
 		grid = new Grid(width, height);
 		score = 0;
 		running = true;
@@ -37,10 +37,6 @@ public class Game extends Thread {
 				running = false;
 			}
 		}
-	}
-
-	public void newGame() {
-		initGame();
 	}
 
 	public void terminate() {

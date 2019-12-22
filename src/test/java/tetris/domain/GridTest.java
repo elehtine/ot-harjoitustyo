@@ -19,13 +19,13 @@ public class GridTest {
 
 	@Test 
 	public void testBlock() {
-		assertEquals(grid.getBlockHash(), 61440);
+		assertEquals(61440, grid.getBlockHash());
 	}
 
     @Test
     public void testRotate() {
-		grid.rotateBlock();
-		assertEquals(grid.getBlockHash(), 8659200);
+		grid.rotateClockwise();
+		assertEquals(270600, grid.getBlockHash());
 	}
 
 	@Test
@@ -39,7 +39,7 @@ public class GridTest {
 	public void testRotateAnddrop() {
 		int y = grid.getY();
 		grid.dropBlock();
-		grid.rotateBlock();
+		grid.rotateClockwise();
 		assertEquals(grid.getY(), y+1);
 	}
 
