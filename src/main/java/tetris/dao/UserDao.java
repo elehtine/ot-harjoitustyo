@@ -3,6 +3,9 @@ package tetris.dao;
 import java.util.*;
 import tetris.domain.User;
 
+/**
+ * Dao interface for saving users
+ */
 public interface UserDao {
 
 	public List<User> findAll();

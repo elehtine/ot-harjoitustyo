@@ -44,6 +44,9 @@ public class TetrisUi extends Application {
 	private final static int PX_WIDTH = 20;
 	private final static String DEFAULT_NAME = "Unnamed";
 
+	/**
+	 * Initialize name and highscore service
+	 */
 	@Override
 	public void init() throws Exception {
 		username = DEFAULT_NAME;
@@ -60,6 +63,9 @@ public class TetrisUi extends Application {
 		userHighScoreService = new UserHighScoreService(userDao, highScoreDao);
 	}
 
+	/**
+	 * Define scenes
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		
@@ -200,6 +206,9 @@ public class TetrisUi extends Application {
 
 	}
 
+	/**
+	 * Returns scene containing current highscores
+	 */
 	private Scene getHighScoreScene(Stage primaryStage) {
 		highscoreBox = new VBox();
 		List<HighScore> highscores = userHighScoreService.getHighScore();
@@ -216,10 +225,15 @@ public class TetrisUi extends Application {
 			primaryStage.setScene(mainMenuScene);
 			errorMessage = "";
 		});
-		highscoreBox.getChildren().addAll(getScore(highscores.size(), "size", 0), menuFromHighscores);
+		highscoreBox.getChildren().addAll(menuFromHighscores);
 		return new Scene(highscoreBox, 300, 250);
 	}
 	
+	/**
+	 * Make one highscore to ui
+	 *
+	 * @return HBOX containing number, name and score
+	 */
 	private Node getScore(int index, String name, int score) {
 		HBox box = new HBox(10);
         box.getChildren().add(new Label("" + index));
@@ -228,6 +242,9 @@ public class TetrisUi extends Application {
 		return box;
 	}
 
+	/**
+	 * Tear down application
+	 */
 	@Override
 	public void stop() {
 		stopGames();

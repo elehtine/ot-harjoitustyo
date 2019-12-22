@@ -1,5 +1,8 @@
 package tetris.domain;
 
+/**
+ * Class for saving users
+ */
 public class User {
 
 	private String userName;
@@ -11,10 +14,20 @@ public class User {
 		this.passwordHash = passwordHandler.getPasswordHash(password);
 	}
 
+	/**
+	 * Return username
+	 *
+	 * @return username
+	 */
 	public String getUsername() {
 		return userName;
 	}
 
+	/**
+	 * Return hashed password
+	 *
+	 * @return password hash
+	 */
 	public int getPasswordHash() {
 		return passwordHash;
 	}

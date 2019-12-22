@@ -244,7 +244,11 @@ public class Grid {
 		return false;
 	}
 
-	// Fix collision
+	/**
+	 * Drops block one block down
+	 *
+	 * @return is drop succesful
+	 */
 	public boolean dropBlock() {
 		if (canMove(x, y + 1, block)) {
 			++y;
@@ -253,6 +257,11 @@ public class Grid {
 		return false;
 	}
 
+	/**
+	 * Drops block to the bottom
+	 *
+	 * @return false if already in bottom
+	 */
 	public boolean hardDrop() {
 		boolean result = false;
 		while (dropBlock()) {
@@ -261,6 +270,12 @@ public class Grid {
 		return result;
 	}
 
+	/**
+	 * Moves block to left or right
+	 *
+	 * @param dx distance to move, 1 or -1
+	 * @return false if not legal move
+	 */
 	public boolean move(int dx) {
 		if (dx != 1 && dx != -1) {
 			return false;
@@ -272,7 +287,13 @@ public class Grid {
 		return false;
 	}
 		
-
+	/**
+	 * Return is block able to move specific coordinates
+	 *
+	 * @param x,y new x and y coordinates
+	 * @param block block that is moved
+	 * @return is possible move
+	 */
 	public boolean canMove(int x, int y, boolean[][] block) {
 		for (int i = 0; i < block.length; ++i) {
 			for (int j = 0; j < block[0].length; ++j) {
@@ -292,6 +313,11 @@ public class Grid {
 		return true;
 	}
 
+	/**
+	 * Returns current game grid
+	 *
+	 * @return game grid
+	 */
 	public int[][] getGrid() {
 		int[][] result = copy(grid);
 		if (block == null) {
@@ -313,6 +339,14 @@ public class Grid {
 		return result;
 	}
 
+	/**
+	 * Returns hash code of block
+	 *
+	 * Each possible block has its own hash code
+	 * and it is only used for testing.
+	 *
+	 * @return hash code of current block
+	 */
 	public int getBlockHash() {
 		int hash = 0;
 		for (int i = 0; i < BLOCK_WIDTH; ++i) {
@@ -326,26 +360,46 @@ public class Grid {
 		return hash;
 	}
 
+	/**
+	 * Returns all used colors
+	 *
+	 * @return colors
+	 */
 	public Color[] getColors() {
 		return COLORS;
 	}
 
+	/**
+	 * @return current x coordinate
+	 */
 	public int getX() {
 		return x;
 	}
 
+	/**
+	 * @return current y coordinate
+	 */
 	public int getY() {
 		return y;
 	}
 
+	/**
+	 * @return width of game grid
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/** 
+	 * @return height of game grid
+	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * Initializes game grid to empty grid in start of the game
+	 */
 	private void initGrid(int index) {
 		this.grid = new int[width][height];
 		for (int i = 0; i < width; ++i) {
@@ -378,6 +432,15 @@ public class Grid {
 		return 2 * add * add;
 	}
 
+	/**
+	 * Static copy method of int array
+	 *
+	 * Used if want just copy of used array 
+	 * that does not change original
+	 *
+	 * @param array Array that wanted to copy
+	 * @return copy of array
+	 */
 	private static int[][] copy(int[][] array) {
 		int[][] result = new int[ array.length ][ array[0].length ];
 		for (int i = 0; i < array.length; ++i) {

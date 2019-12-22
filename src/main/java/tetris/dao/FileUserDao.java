@@ -7,11 +7,19 @@ import java.util.*;
 
 import tetris.domain.User;
 
+/**
+ * Class for saving users to file
+ */
 public class FileUserDao implements UserDao {
 
 	private List<User> users;
 	private String file;
 
+	/**
+	 * Initializes class
+	 *
+	 * @param file name of file that will contain data
+	 */
 	public FileUserDao(String file) throws Exception {
         this.users = new ArrayList<>();
         this.file = file;
@@ -28,16 +36,29 @@ public class FileUserDao implements UserDao {
         }
     }
 
+	/**
+	 * Returns all user data
+	 *
+	 * @return all users
+	 */
 	@Override
 	public List<User> findAll() {
 		return users;
 	}
 
+	/**
+	 * Add new user to data
+	 *
+	 * @param user user that want to add
+	 */
 	@Override
 	public void create(User user) {
 		users.add(user);
 	}
 
+	/**
+	 * Save all user data to database file
+	 */
 	@Override
 	public void save() {
 		FileWriter writer = null;
@@ -57,7 +78,12 @@ public class FileUserDao implements UserDao {
 		}
 	}
 
-
+	/**
+	 * Find users from data by username
+	 *
+	 * @param username name of user
+	 * @return user if exists
+	 */
 	@Override
 	public User findByUsername(String username) {
 		for (User u: users) {

@@ -31,6 +31,13 @@ public class HighScore implements Comparable<HighScore> {
 		return username;
 	}
 
+	/**
+	 * Equals method of highscore
+	 *
+	 * ignores name
+	 *
+	 * @return true if score is same
+	 */
 	@Override
 	public boolean equals(Object other) {
 		if (!(other instanceof HighScore)) {
@@ -43,6 +50,13 @@ public class HighScore implements Comparable<HighScore> {
 		return false;
 	}
 
+	/**
+	 * Compares highscores to other
+	 *
+	 * ignores name
+	 *
+	 * @return difference in scores
+	 */
 	public int compareTo(HighScore h) {
 		return h.score - this.score;
 	}

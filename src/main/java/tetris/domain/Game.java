@@ -2,6 +2,9 @@ package tetris.domain;
 
 import javafx.scene.paint.*;
 
+/**
+ * Thread that updates game grid and drops block
+ */
 public class Game extends Thread {
 
 	private static final long SLEEP_TIME = 1000;
@@ -16,6 +19,9 @@ public class Game extends Thread {
 	private int width = 10;
 	private int height = 20;
 
+	/**
+	 * Constructor initializes game grid, block and score
+	 */
 	public Game() {
 		grid = new Grid(width, height);
 		score = 0;
@@ -23,6 +29,9 @@ public class Game extends Thread {
 		stop = false;
 	}
 
+	/**
+	 * Start game
+	 */
 	@Override
 	public void run() {
 		running = true;
@@ -39,11 +48,17 @@ public class Game extends Thread {
 		}
 	}
 
+	/**
+	 * Stops game
+	 */
 	public void terminate() {
 		running = false;
 		stop = true;
 	}
 
+	/**
+	 * Rotates block
+	 */
 	public void rotate() {
 		if (!running) {
 			return;
@@ -53,9 +68,13 @@ public class Game extends Thread {
 		}
 	}
 
-	/*
+	/**
+	 * Move block rigth and left one pixel
+	 *
 	 * right: dx = 1
 	 * left: dx = -1
+	 *
+	 * @param dx direction to move
 	 */
 	public void move(int dx) {
 		if (!running) {
@@ -69,6 +88,9 @@ public class Game extends Thread {
 		}
 	}
 
+	/**
+	 * Drop block one pixel down
+	 */
 	public void drop() {
 		if (!running) {
 			return;
@@ -81,18 +103,22 @@ public class Game extends Thread {
 		newBlock();
 	}
 
+	/**
+	 * Drop block to the bottom
+	 */
 	public void hardDrop() {
 		if (!running) {
 			return;
 		}
 		while (grid.dropBlock()) {
 			++score;
-			;
-			// Later count points from dropping distance
 		}
 		newBlock();
 	}
 
+	/**
+	 * Create new block
+	 */
 	private void newBlock() {
 		score += grid.blockToGrid();
 		if (grid.nextBlock()) {
@@ -103,26 +129,48 @@ public class Game extends Thread {
 		isChanged = true;
 	}
 
+	/**
+	 * Return copy of game grid
+	 *
+	 * @return game grid
+	 */
 	public int[][] getGrid() {
 		return grid.getGrid();
 	}
 
+	/**
+	 * Return colors used in game
+	 * 
+	 * @return colors
+	 */
 	public Color[] getColors() {
 		return grid.getColors();
 	}
 
+	/**
+	 * Return is grid state updated since last check
+	 */
 	public boolean getIsChanged() {
 		boolean result = isChanged;
 		isChanged = false;
 		return result;
 	}
 
+	/**
+	 * Return is thread running
+	 *
+	 * @return true if thread is running
+	 */
 	public boolean getIsRunning() {
 		return running;
 	}
 
 	/**
-	 * Only for testing
+	 * Return is thread running
+	 *
+	 * Only for testing!!
+	 *
+	 * @return true if thread is running
 	 */
 	public boolean getRunning() {
 		for (int i = 0; i < 10; ++i) {

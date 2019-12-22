@@ -8,11 +8,19 @@ import java.util.*;
 import tetris.domain.User;
 import tetris.domain.HighScore;
 
+/**
+ * Class for saving highscores to file
+ */
 public class FileHighScoreDao implements HighScoreDao {
 
 	private List<HighScore> highScores;
 	private String file;
 
+	/**
+	 * Initialize class
+	 *
+	 * @param file name of file used as database
+	 */
 	public FileHighScoreDao(String file) throws Exception {
         this.highScores = new ArrayList<>();
         this.file = file;
@@ -30,16 +38,29 @@ public class FileHighScoreDao implements HighScoreDao {
         }
     }
 
+	/**
+	 * Return all highscore data
+	 *
+	 * @return list of highscores
+	 */
 	@Override
 	public List<HighScore> findAll() {
 		return highScores;
 	}
 
+	/**
+	 * Add new highscore to data
+	 *
+	 * @param h highscore to add
+	 */
 	@Override
 	public void create(HighScore h) {
 		highScores.add(h);
 	}
 
+	/**
+	 * Write all data to file
+	 */
 	@Override
 	public void save() {
 		FileWriter writer = null;

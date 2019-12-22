@@ -28,8 +28,11 @@ public class Painter extends Thread {
 		this.username = username;
 	}
 
+	/**
+	 * Start game thread and update ui
+	 */
 	@Override
-	public void run () {
+	public void run() {
 		running = true;
 		game = new Game();
 		game.start();
@@ -53,40 +56,59 @@ public class Painter extends Thread {
 		game.terminate();
 	}
 
+	/**
+	 * Method for terminating game
+	 */
+	public void terminate() {
+		running = false;
+	}
+
+	/**
+	 * Rotate game block clockwise
+	 */
 	public void rotate() {
 		if (running && game != null) {
 			game.rotate();
 		}
 	}
 
+	/**
+	 * Drop game block one line down
+	 */
 	public void drop() {
 		if (running && game != null) {
 			game.drop();
 		}
 	}
 
-
+	/**
+	 * Drop game block to bottom
+	 */
 	public void hardDrop() {
 		if (running && game != null) {
 			game.hardDrop();
 		}
 	}
 
+	/**
+	 * Moves block in game
+	 */
 	public void move(int x) {
 		if (running && game != null) {
 			game.move(x);
 		}
 	}
 
-	public void terminate() {
-		int score = game.getScore();
-		game.terminate();
-	}
-
+	/**
+	 * Updates username that will be saved in highscore database
+	 */
 	public void setUsername(String name) {
 		this.username = name;
 	}
 
+	/**
+	 * Paints new game grid to ui
+	 */
 	private void paint(int[][] grid, Color[] colors, int score) {
 		for (int i = 0; i < grid.length; ++i) {
 			for (int j = 0; j < grid[0].length; ++j) {
