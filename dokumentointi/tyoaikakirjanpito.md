@@ -15,5 +15,5 @@
 | 3.12 | 3 | lisää ominaisuuksia (palikat, rivien poisto) ja testausta |
 | 7.12 | 1 | javadocin tutkiminen |
 | 9.12 | 2 | javadoc käyttöön tietokantojen ja käyttäjän aloittelu |
-| yht | 25 |  |
-
+| 9.12 | 3 | kirjautumisen ja pisteiden tekoa |
+| yht | 28 |  |

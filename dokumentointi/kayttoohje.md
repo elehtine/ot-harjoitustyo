@@ -18,7 +18,8 @@ java -jar tetris.jar
 
 # Käyttöliittymä
 
-Käyttöliittymä on selkeä. Valikoissa on nappeja, joiden tekstit kuvaavat, mitä ne tekevät.
+Sovellus aukeaa päävalikkoon. Siellä on nappeja, joiden tekstit kuvaavat, mitä ne tekevät.
+Kirjautumisnäkymässä ja rekisteröintinäkymässä vasemmanpuoleinen kenttä on käyttäjänimelle ja oikeanpuoleinen on salasanalle.
 
 ## Pelinäkymä
 

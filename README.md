@@ -16,9 +16,12 @@ Lisäksi ohjelmassa ollaan käytetty useita säikeitä. Toivottavasti niiden tes
 
 [Arkkitehtuurikuvaus](https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md) 
 
+[Käyttöohjeet](https://github.com/elehtine/tetris/blob/master/dokumentointi/kayttoohje.md)
+
 ## Releaset
 
 [Viikko 5](https://github.com/elehtine/tetris/releases)
+[Viikko 6](https://github.com/elehtine/tetris/releases/tag/viikko6)
 
 ## Komentorivitoiminnot
 
@@ -46,6 +49,16 @@ Komento
 mvn package
 ```
 generoi hakemistoon target suoritettavan jar-tiedoston _Tetris-1.0-SNAPSHOT.jar_
+
+### JavaDoc
+
+JavaDoc generoidaan komennolla
+
+```
+mvn javadoc:javadoc
+```
+
+JavaDocin generoiminen voi näyttää virheilmoituksen, mutta sen pitäisi silti generoitua. JavaDocia voi tarkastella avaamalla selaimella tiedosto _target/site/apidocs/index.html_
 
 ### Checkstyle
 
