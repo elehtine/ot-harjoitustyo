@@ -201,23 +201,7 @@ public class Grid {
 				temp[i][j] = block[BLOCK_WIDTH - 1 - j][i];
 			}
 		}
-		if (canMove(x, y, temp)) {
-			block = temp;
-			return true;
-		}
-		for (int i = 1; i <= 2; ++i) {
-			if (canMove(x + i, y, temp)) {
-				x += i;
-				block = temp;
-				return true;
-			}
-			if (canMove(x - i, y, temp)) {
-				x -= i;
-				block = temp;
-				return true;
-			}
-		}
-		return false;
+		return checkRotate(temp);
 	}
 
 	/**
@@ -232,6 +216,15 @@ public class Grid {
 				temp[i][j] = block[j][BLOCK_WIDTH - 1 - i];
 			}
 		}
+		return checkRotate(temp);
+	}
+
+	/**
+	 * Checks if rotate is legal and rotates
+	 *
+	 * @return is rotation successful
+	 */
+	private boolean checkRotate(boolean[][] temp) {
 		if (canMove(x, y, temp)) {
 			block = temp;
 			return true;
@@ -370,7 +363,7 @@ public class Grid {
 	 */
 	private int removeLines() {
 		int add = 0;
-		for (int j = height-1; j >= 0; --j) {
+		for (int j = height - 1; j >= 0; --j) {
 			boolean remove = true;
 			for (int i = 0; i < width; ++i) {
 				if (grid[i][j] == COLOR_NB) {
@@ -382,7 +375,7 @@ public class Grid {
 				++add;
 			}
 		}
-		return 2*add*add;
+		return 2 * add * add;
 	}
 
 	private static int[][] copy(int[][] array) {
