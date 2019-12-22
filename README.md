@@ -18,10 +18,15 @@ Lisäksi ohjelmassa ollaan käytetty useita säikeitä. Toivottavasti niiden tes
 
 [Käyttöohjeet](https://github.com/elehtine/tetris/blob/master/dokumentointi/kayttoohje.md)
 
+[Testaus](https://github.com/elehtine/tetris/blob/master/dokumentointi/testaus.md)
+
 ## Releaset
 
 [Viikko 5](https://github.com/elehtine/tetris/releases)
+
 [Viikko 6](https://github.com/elehtine/tetris/releases/tag/viikko6)
+
+[Loppupalautus](https://github.com/elehtine/tetris/releases/tag/loppupalautus)
 
 ## Komentorivitoiminnot
 
