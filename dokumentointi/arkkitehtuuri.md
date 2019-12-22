@@ -21,9 +21,9 @@ Suurin osa sovelluslogiikkaa on itse tetris peli. Se on mahdollisimman erillää
 
 Lisäksi huipputulokset tulevat tallentumaan. Tämä on tarkoitus järjestää sovelluslogiikassa kokonaan. Käyttöliittymä pystyy hallitsemaan vain käyttäjien luontia ja kirjautumista.
 
-Seuraava kuva on alustava luokka/pakkauskaavio:
+Seuraava kuva on ohjelman luokka/pakkauskaavio:
 
-<img src="https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/kuvat/a-1.png" width="320">
+<img src="https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/kuvat/a-3.png" width="320">
 
 ## Sekvenssikaavio
 
