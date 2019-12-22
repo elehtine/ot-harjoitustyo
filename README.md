@@ -47,6 +47,16 @@ mvn package
 ```
 generoi hakemistoon target suoritettavan jar-tiedoston _Tetris-1.0-SNAPSHOT.jar_
 
+### JavaDoc
+
+JavaDoc generoidaan komennolla
+
+```
+mvn javadoc:javadoc
+```
+
+JavaDocin generoiminen voi näyttää virheilmoituksen, mutta sen pitäisi silti generoitua. JavaDocia voi tarkastella avaamalla selaimella tiedosto _target/site/apidocs/index.html_
+
 ### Checkstyle
 
 Tiedostoon [checkstyle.xml](https://github.com/elehtine/tetris/blob/master/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
