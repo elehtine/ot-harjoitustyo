@@ -16,9 +16,12 @@ Lisäksi ohjelmassa ollaan käytetty useita säikeitä. Toivottavasti niiden tes
 
 [Arkkitehtuurikuvaus](https://github.com/elehtine/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md) 
 
+[Käyttöohjeet](https://github.com/elehtine/tetris/blob/master/dokumentointi/kayttoohje.md)
+
 ## Releaset
 
 [Viikko 5](https://github.com/elehtine/tetris/releases)
+[Viikko 6](https://github.com/elehtine/tetris/releases/tag/viikko6)
 
 ## Komentorivitoiminnot
 
