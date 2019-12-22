@@ -6,7 +6,7 @@ Sovellus on Tetris peli. Pelissä yksikerrallaan eri muotoisia palikoita. Jos pa
 
 ## Käyttäjät
 
-Alkuvaiheessa ei ole tarkoitus tehdä minkäänlaista käyttäjää. Kun pelimekaniikka toimii, lisätään kirjautumis vaihtoehto. Tällöin pelaaja voi tallentaa pelin jälkeen pisteensä omalla nimellään.
+Peliin voi luoda käyttäjiä salasanojen kanssa. Käyttäjän nimi tulee näkymään kaikkiin huipputuloksiin jotka hän tekee. Jos käyttäjä ei ole kirjautunut nimeksi tulee _Unnamed_.
 
 ## Käyttöliittymäluonnos
 
@@ -20,15 +20,12 @@ Sovellus koostuu neljästä eri näkymästä
 
 ### Ennen kirjautumista
 
-- käyttäjä voi pelata peliä (tehty)
-- käyttäjä voi pelin vaihtaa asetuksia
-- pelaaja voi selata huipputuloksia (kesken)
+- käyttäjä voi pelata peliä
+- pelaaja voi selata huipputuloksia
 
 ### Kirjautumisen jälkeen
 
-- käyttäjä voi katsoa huipputuloksia (kesken)
-- käyttäjä voi poistaa tuloksiaan (kesken)
-- käyttäjä voi kirjautua ulos järjestelmästä (tehty)
+- käyttäjän pelit lisätään huipputuloksiin omalla nimellä.
 
 ## Jatkokehitysideoita
 
@@ -44,7 +41,4 @@ Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seura
 
 - suodatin- ja hakutoimintoja huipputuloksiin
 
-- käyttäjille salasana (tehty)
-
-- käyttäjätunnuksen poisto
-
+- käyttäjätunnusten ja huipputulosten poisto
