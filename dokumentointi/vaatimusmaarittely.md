@@ -11,10 +11,10 @@ Peliin voi luoda käyttäjiä salasanojen kanssa. Käyttäjän nimi tulee näkym
 ## Käyttöliittymäluonnos
 
 Sovellus koostuu neljästä eri näkymästä
-- peli näkymä (tehty)
-- asetus näkymä
-- huipputulos näkymä (kesken)
-- kirjautumis näkymä (tehty)
+- peli näkymä
+- aloitus näkymä
+- huipputulos näkymä
+- kirjautumis näkymä
 
 ## Perusversion tarjoama toiminnallisuus
 
