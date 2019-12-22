@@ -17,4 +17,4 @@
 | 9.12 | 2 | javadoc käyttöön tietokantojen ja käyttäjän aloittelu |
 | 9.12 | 3 | kirjautumisen ja pisteiden tekoa |
 | 9.21 | 7 | sovelluksen viimeistely ja dokumentointi |
-| yht | 28 |  |
+| yht | 35 |  |
