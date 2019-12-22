@@ -11,16 +11,16 @@ public class Game extends Thread {
 	private int score;
 	private boolean running;
 	private boolean isStarted; // For testing
+	private boolean stop;
 
 	private int width = 10;
 	private int height = 20;
 
-	public Game() {
-		initGame();
-	}
-
 	private void initGame() {
 		grid = new Grid(width, height);
+		score = 0;
+		running = true;
+		stop = false;
 	}
 
 	@Override
@@ -39,12 +39,20 @@ public class Game extends Thread {
 		}
 	}
 
+	public void newGame() {
+		initGame();
+	}
+
 	public void terminate() {
 		running = false;
+		stop = true;
 	}
 
 	public void rotate() {
-		if (grid.rotateBlock()) {
+		if (!running) {
+			return;
+		}
+		if (grid.rotateClockwise()) {
 			isChanged = true;
 		}
 	}
@@ -54,6 +62,9 @@ public class Game extends Thread {
 	 * left: dx = -1
 	 */
 	public void move(int dx) {
+		if (!running) {
+			return;
+		}
 		if (dx != 1 && dx != -1) {
 			return;
 		}
@@ -63,6 +74,9 @@ public class Game extends Thread {
 	}
 
 	public void drop() {
+		if (!running) {
+			return;
+		}
 		if (grid.dropBlock()) {
 			isChanged = true;
 			++score;
@@ -72,6 +86,9 @@ public class Game extends Thread {
 	}
 
 	public void hardDrop() {
+		if (!running) {
+			return;
+		}
 		while (grid.dropBlock()) {
 			++score;
 			;
@@ -86,7 +103,7 @@ public class Game extends Thread {
 			isChanged = true;
 			return;
 		}
-		grid = new Grid(width, height);
+		running = false;
 		isChanged = true;
 	}
 
@@ -102,6 +119,10 @@ public class Game extends Thread {
 		boolean result = isChanged;
 		isChanged = false;
 		return result;
+	}
+
+	public boolean getIsRunning() {
+		return running;
 	}
 
 	/**

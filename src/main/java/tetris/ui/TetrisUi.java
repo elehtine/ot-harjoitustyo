@@ -8,6 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.Node;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 
@@ -15,6 +16,7 @@ import java.util.*;
 import java.io.*;
 
 import tetris.domain.Game;
+import tetris.domain.HighScore;
 import tetris.domain.UserHighScoreService;
 import tetris.dao.FileUserDao;
 import tetris.dao.FileHighScoreDao;
@@ -24,7 +26,6 @@ import tetris.dao.FileHighScoreDao;
  */
 public class TetrisUi extends Application {
 
-	private Game game;
 	private Painter painter;
 
 	private UserHighScoreService userHighScoreService;
@@ -34,6 +35,8 @@ public class TetrisUi extends Application {
 	private Scene loginScene;
 	private Scene createUserScene;
 	private Scene highScoreScene;
+
+	private VBox highscoreBox;
 
 	private String username;
 	private String errorMessage;
@@ -66,25 +69,7 @@ public class TetrisUi extends Application {
 		Group root = new Group();
 		root.getChildren().addAll(canvas);
 		Scene gameScene = new Scene(root);
-		gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case UP:    game.rotate(); break;
-                    case DOWN:  game.drop(); break;
-                    case LEFT:  game.move(-1); break;
-                    case RIGHT: game.move(1); break;
-                    case SPACE: game.hardDrop(); break;
-                    case ESCAPE:
-						stopGames();
-						primaryStage.setScene(mainMenuScene);
-						break;
-                }
-            }
-        });
-
-
-		// Main menu scene
+			// Main menu scene
 
 		HBox mainMenuPane = new HBox(10);
         VBox buttonPane = new VBox(10);
@@ -107,15 +92,30 @@ public class TetrisUi extends Application {
 			errorMessage = "";
 		});
         gameButton.setOnAction(e -> {
-			primaryStage.setScene(gameScene);
-			game = new Game();
-			painter = new Painter(canvas.getGraphicsContext2D(), game, userHighScoreService);
-			game.start();
+		
+			painter = new Painter(canvas.getGraphicsContext2D(), userHighScoreService, username);
+			gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+				@Override
+				public void handle(KeyEvent event) {
+					switch (event.getCode()) {
+						case UP:    painter.rotate(); break;
+						case DOWN:  painter.drop(); break;
+						case LEFT:  painter.move(-1); break;
+						case RIGHT: painter.move(1); break;
+						case SPACE: painter.hardDrop(); break;
+						case ESCAPE:
+							stopGames();
+							primaryStage.setScene(mainMenuScene);
+							break;
+					}
+				}
+			});
 			painter.start();
+			primaryStage.setScene(gameScene);
 			errorMessage = "";
 		});
         highScoreButton.setOnAction(e -> {
-			primaryStage.setScene(highScoreScene);
+			primaryStage.setScene(getHighScoreScene(primaryStage));
 			errorMessage = "";
 		});
         
@@ -193,12 +193,39 @@ public class TetrisUi extends Application {
 		createUserPane.getChildren().addAll(newUserPane, createUserErrorLabel);
 		createUserScene = new Scene(createUserPane);
 
-
 		// Set first scene
 		primaryStage.setTitle("Tetris");
 		primaryStage.setScene(mainMenuScene);
 		primaryStage.show();
 
+	}
+
+	private Scene getHighScoreScene(Stage primaryStage) {
+		highscoreBox = new VBox();
+		List<HighScore> highscores = userHighScoreService.getHighScore();
+		for (int i = 0; i < 10; ++i) { // Show ten first scores
+			if (highscores.size() <= i) {
+				highscoreBox.getChildren().add(getScore(i + 1, "...", 0));
+			} else {
+				HighScore h = highscores.get(i);
+				highscoreBox.getChildren().add(getScore(i + 1, h.getUsername(), h.getScore()));
+			}
+		}
+		Button menuFromHighscores = new Button("Main Menu");
+		menuFromHighscores.setOnAction(e -> {
+			primaryStage.setScene(mainMenuScene);
+			errorMessage = "";
+		});
+		highscoreBox.getChildren().addAll(getScore(highscores.size(), "size", 0), menuFromHighscores);
+		return new Scene(highscoreBox, 300, 250);
+	}
+	
+	private Node getScore(int index, String name, int score) {
+		HBox box = new HBox(10);
+        box.getChildren().add(new Label("" + index));
+        box.getChildren().add(new Label(name));
+        box.getChildren().add(new Label("" + score));
+		return box;
 	}
 
 	@Override
@@ -212,8 +239,10 @@ public class TetrisUi extends Application {
 	 * If multiplayer mode, stop all games
 	 */
 	private void stopGames() {
-		game.terminate();
-		painter.terminate();
+		userHighScoreService.save();
+		if (painter != null) {
+			painter.terminate();
+		}
 	}
 
 	public static void main(String[] args) {

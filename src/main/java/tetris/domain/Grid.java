@@ -194,11 +194,42 @@ public class Grid {
 	 *
 	 * @return is rotation legal
 	 */
-	public boolean rotateBlock() {
+	public boolean rotateCounterClockwise() {
 		boolean[][] temp = new boolean[BLOCK_WIDTH][BLOCK_WIDTH];
 		for (int i = 0; i < BLOCK_WIDTH; ++i) {
 			for (int j = 0; j < BLOCK_WIDTH; ++j) {
 				temp[i][j] = block[BLOCK_WIDTH - 1 - j][i];
+			}
+		}
+		if (canMove(x, y, temp)) {
+			block = temp;
+			return true;
+		}
+		for (int i = 1; i <= 2; ++i) {
+			if (canMove(x + i, y, temp)) {
+				x += i;
+				block = temp;
+				return true;
+			}
+			if (canMove(x - i, y, temp)) {
+				x -= i;
+				block = temp;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Rotates block clockwise
+	 *
+	 * @return is rotation legal
+	 */
+	public boolean rotateClockwise() {
+		boolean[][] temp = new boolean[BLOCK_WIDTH][BLOCK_WIDTH];
+		for (int i = 0; i < BLOCK_WIDTH; ++i) {
+			for (int j = 0; j < BLOCK_WIDTH; ++j) {
+				temp[i][j] = block[j][BLOCK_WIDTH - 1 - i];
 			}
 		}
 		if (canMove(x, y, temp)) {

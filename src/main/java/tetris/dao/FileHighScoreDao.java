@@ -24,6 +24,7 @@ public class FileHighScoreDao implements HighScoreDao {
                 highScores.add(score);
             }
         } catch (Exception e) {
+			e.printStackTrace();
             FileWriter writer = new FileWriter(new File(file));
             writer.close();
         }
@@ -35,12 +36,25 @@ public class FileHighScoreDao implements HighScoreDao {
 	}
 
 	@Override
-	public void save() throws Exception {
-		try (FileWriter writer = new FileWriter(new File(file))) {
+	public void create(HighScore h) {
+		highScores.add(h);
+	}
+
+	@Override
+	public void save() {
+		FileWriter writer = null;
+		try {
+			writer = new FileWriter(new File(file));
             for (HighScore score : highScores) {
-                writer.write(score.getUsername() + ";" + score.getScore());
+                writer.write(score.getUsername() + ";" + score.getScore() + "\n");
             }
-        }
+        } catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				writer.close();
+			} catch (Exception e) {}
+		}
 	}
 
 }

@@ -35,5 +35,20 @@ public class UserHighScoreService {
 		userDao.create(new User(username, password));
 	}
 
+	public List<HighScore> getHighScore() {
+		List<HighScore> result = highScoreDao.findAll();
+		Collections.sort(result);
+		return result;
+	}
+
+	public void addHighScore(HighScore h) {
+		highScoreDao.create(h);
+	}
+
+	public void save() {
+		userDao.save();
+		highScoreDao.save();
+	}
+
 }
 

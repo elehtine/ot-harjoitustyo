@@ -4,6 +4,7 @@ import javafx.scene.paint.*;
 import javafx.scene.canvas.GraphicsContext;
 
 import tetris.domain.Game;
+import tetris.domain.HighScore;
 import tetris.domain.UserHighScoreService;
 
 /**
@@ -16,23 +17,29 @@ public class Painter extends Thread {
 	private GraphicsContext gc;
 	private Game game;
 	private UserHighScoreService userHighScoreService;
+	private String username;
 	private boolean running;
 	private static final Color TEXT_COLOR = Color.RED;
-
-	public Painter(GraphicsContext gc, Game game, UserHighScoreService userHighScoreService) {
+	
+	public Painter(GraphicsContext gc, UserHighScoreService userHighScoreService, String username) {
 		this.gc = gc;
-		this.game = game;
 		this.running = false;
 		this.userHighScoreService = userHighScoreService;
+		this.username = username;
 	}
 
 	@Override
-	public void run() {
+	public void run () {
 		running = true;
-
+		game = new Game();
+		game.newGame();
+		game.start();
 		while (running) {
 			if (game.getIsChanged()) {
 				paint(game.getGrid(), game.getColors(), game.getScore());
+			}
+			if (!game.getIsRunning()) {
+				break;
 			}
 
 			try {
@@ -42,11 +49,43 @@ public class Painter extends Thread {
 				e.printStackTrace();
 			}
 		}
+		HighScore highscore = new HighScore(username, game.getScore());
+		userHighScoreService.addHighScore(highscore);
+		game.terminate();
+	}
+
+	public void rotate() {
+		if (running && game != null) {
+			game.rotate();
+		}
+	}
+
+	public void drop() {
+		if (running && game != null) {
+			game.drop();
+		}
+	}
+
+
+	public void hardDrop() {
+		if (running && game != null) {
+			game.hardDrop();
+		}
+	}
+
+	public void move(int x) {
+		if (running && game != null) {
+			game.move(x);
+		}
 	}
 
 	public void terminate() {
 		int score = game.getScore();
-		running = false;
+		game.terminate();
+	}
+
+	public void setUsername(String name) {
+		this.username = name;
 	}
 
 	private void paint(int[][] grid, Color[] colors, int score) {

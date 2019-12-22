@@ -1,9 +1,9 @@
 package tetris.domain;
 
 /**
- * Class for saving scores
+ * Class for saving score
  */
-public class HighScore {
+public class HighScore implements Comparable<HighScore> {
 
 	private final int score;
 	private final String username;
@@ -29,6 +29,22 @@ public class HighScore {
 	 */
 	public String getUsername() {
 		return username;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof HighScore)) {
+			return false;
+		}
+		HighScore h = (HighScore) other;
+		if (h.score == this.score) {
+			return true;
+		}
+		return false;
+	}
+
+	public int compareTo(HighScore h) {
+		return h.score - this.score;
 	}
 
 }

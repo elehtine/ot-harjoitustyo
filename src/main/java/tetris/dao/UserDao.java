@@ -9,7 +9,7 @@ public interface UserDao {
 
 	public void create(User user);
 
-	public void save() throws Exception;
+	public void save();
 
 	public User findByUsername(String username);
 }

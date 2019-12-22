@@ -38,16 +38,23 @@ public class FileUserDao implements UserDao {
 		users.add(user);
 	}
 
-
-
 	@Override
-	public void save() throws Exception {
-		try (FileWriter writer = new FileWriter(new File(file))) {
+	public void save() {
+		FileWriter writer = null;
+		try {
+			writer = new FileWriter(new File(file));
             for (User user : users) {
                 writer.write(user.getUsername() + ";" + user.getPasswordHash() + "\n");
             }
-        }
+        } catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				writer.close();
+			} catch (Exception e) {}
+		}
 	}
+
 
 	@Override
 	public User findByUsername(String username) {
